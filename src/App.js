@@ -29,26 +29,43 @@ const mock = [
 function App() {
   const [ conteudo, setConteudo ] = useState(<></>)
 
-  function carregarTodosOsPersonagens(){
-    return mock
-  }
+  async function carregarTodosOsPersonagens(){
+    const retorno = await fetch(
+      "https://rickandmortyapi.com/api/character",
+    {
+    method: "GET",
+    }
+  )
+  .then((response) => response.json())
 
-  function listaPersonagem() {
-    const todosPersonagens = carregarTodosOsPersonagens();
+  // console.log(retorno)
+
+  return retorno.results;
+
+  return mock.results; 
+}
+
+  async function listaPersonagem() {
+    const todosPersonagens = await carregarTodosOsPersonagens();
     return todosPersonagens.map((personagem) => 
     <div className='card char'>
-      <img src='https://rickandmortyapi.com/api/character/avatar/565.jpeg' alt='Rick and Morty' />
+      <img src={personagem.image} alt={personagem.name} />
       <p><strong>Name: </strong>{personagem.name}</p>
-      <p><strong>Especie: </strong>{personagem.species}</p>
-      <p><strong>Genero: </strong>{personagem.gender}</p>
-      <p><strong>Episodio: </strong>{personagem.episode}</p>
+      <p><strong>Specie: </strong>{personagem.species}</p>
+      <p><strong>Gender: </strong>{personagem.gender}</p>
+      <p><strong>Episode: </strong>{personagem.episode.map(ep => (
+        <>Ep-</>
+      ))}</p>
       <p><strong>Status: </strong>{personagem.status}</p>
     </div>);
   }
   
-  useEffect(() => (
-    setConteudo(listaPersonagem())
-    ))
+  useEffect(() => {
+    async function carregar(){
+      setConteudo(await listaPersonagem());
+    }
+    carregar();
+   }, []);
 
   return (
     <div className="App">
