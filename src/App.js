@@ -50,11 +50,12 @@ function App() {
     return todosPersonagens.map((personagem) => 
     <div className='card char'>
       <img src={personagem.image} alt={personagem.name} />
-      <p><strong>Name: </strong>{personagem.name}</p>
-      <p><strong>Specie: </strong>{personagem.species}</p>
-      <p><strong>Gender: </strong>{personagem.gender}</p>
-      <p><strong>Episode: </strong>{personagem.episode.map(ep => (
-        <>Ep-</>
+      <p><strong>Nome: </strong>{personagem.name}</p>
+      <p><strong>Especie: </strong>{personagem.species}</p>
+      <p><strong>Genero: </strong>{personagem.gender}</p>
+      <p><strong>Episodio: </strong>{personagem.episode.map(ep => (
+        <span key={personagem.name+(ep.split('episode/')[1])}>
+          Ep-{(ep.split('episode/')[1])} </span>
       ))}</p>
       <p><strong>Status: </strong>{personagem.status}</p>
     </div>);
