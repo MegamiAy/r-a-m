@@ -114,6 +114,7 @@ function App() {
       ))}</p>
       <p><strong>Status: </strong>{traduzirStatus(personagem.status)}</p>
     </div>);
+    <button></button>
   }
   
   useEffect(() => {
