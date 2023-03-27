@@ -45,19 +45,74 @@ function App() {
   return mock.results; 
 }
 
+
+
+  function traduzirStatus(status){
+    switch(status){
+      case 'Alive':
+        return 'Vivo';
+      case 'Dead':
+        return 'Morto';
+      case 'unknown':
+        return 'Desconhecido';
+      default:
+        return status;
+    }
+  }
+
+  function traduzirEspecie(species){
+    switch(species){
+      case 'Human':
+        return 'Humano';
+      case 'Alien':
+        return 'Alien';
+      case 'Mythological Creature':
+        return 'Criatura Mítica';
+      case 'Humanoid':
+        return 'Humanoide';
+      case 'Animal':
+        return 'Animal';
+      case 'Poopybutthole':
+        return 'Poopybutthole';
+      case 'Disease':
+        return 'Doença';
+      case 'Robot':
+        return 'Robô';
+      case 'Vampire':
+        return 'Vampiro';
+      case 'Cronenberg':
+        return 'Cronenberg';
+      case 'Parasite':
+        return 'Parasita';
+      case 'unknown':
+        return 'Desconhecido';
+      default:
+        return species;
+    }
+  }
+
+  function traduzirGenero(gender){
+    switch(gender){
+      case 'Male':
+        return 'Masculino';
+      case 'Female':
+        return 'Feminino';
+    }
+  }
+
   async function listaPersonagem() {
     const todosPersonagens = await carregarTodosOsPersonagens();
     return todosPersonagens.map((personagem) => 
     <div className='card char'>
       <img src={personagem.image} alt={personagem.name} />
       <p><strong>Nome: </strong>{personagem.name}</p>
-      <p><strong>Especie: </strong>{personagem.species}</p>
-      <p><strong>Genero: </strong>{personagem.gender}</p>
+      <p><strong>Especie: </strong>{traduzirEspecie(personagem.species)}</p>
+      <p><strong>Genero: </strong>{traduzirGenero(personagem.gender)}</p>
       <p><strong>Episodio: </strong>{personagem.episode.map(ep => (
         <span key={personagem.name+(ep.split('episode/')[1])}>
           Ep-{(ep.split('episode/')[1])} </span>
       ))}</p>
-      <p><strong>Status: </strong>{personagem.status}</p>
+      <p><strong>Status: </strong>{traduzirStatus(personagem.status)}</p>
     </div>);
   }
   
