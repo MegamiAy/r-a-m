@@ -1,29 +1,6 @@
 import { useEffect, useState } from "react";
 import "./style/App.css";
 
-const mock = [
-  {
-    id: 565,
-    name: "Debrah",
-    status: "Alive",
-    species: "Mythological Creature",
-    type: "Dragon",
-    gender: "Male",
-    origin: {
-      name: "Draygon",
-      url: "https://rickandmortyapi.com/api/location/94",
-    },
-    location: {
-      name: "Draygon",
-      url: "https://rickandmortyapi.com/api/location/94",
-    },
-    image: "https://rickandmortyapi.com/api/character/avatar/565.jpeg",
-    episode: ["https://rickandmortyapi.com/api/episode/35"],
-    url: "https://rickandmortyapi.com/api/character/565",
-    created: "2020-05-07T11:34:43.083Z",
-  },
-];
-
 function App() {
   const [conteudo, setConteudo] = useState(<></>);
   const [busca, setBusca] = useState("");
@@ -48,11 +25,6 @@ function App() {
 
     return char.results;
 
-    // console.log(retorno)
-
-    // return retorno.results;
-
-    // return mock.results;
   }
 
   function traduzirStatus(status) {
